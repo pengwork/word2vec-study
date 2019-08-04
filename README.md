@@ -104,9 +104,8 @@ print(model.wv.doesnt_match(list))
 
 对于我来讲，我是想看看它“好坏”。没有工业的应用，我就以“我”为标准，测试一下人类对于近似词的判定，和模型得出的判定，一致还是不一致。
 
-我找到了一个测试集合，(近义词测试集合)[https://www.cs.york.ac.uk/semeval-2012/task4/index.html]
-
-这是下一步的工作。
+*我找到了一个测试集合，(近义词测试集合)[https://www.cs.york.ac.uk/semeval-2012/task4/index.html]
+这是下一步的工作。*
 ### 类比测试
 ```python
 #test_simTest.py
@@ -121,14 +120,15 @@ print(model.wv.most_similar(positive=[u'国王',u'女人'],negative=[u'男人'])
 一个对比测试，结论很明显：随着维数增大，“女王”排名越来越高。但是，我觉得很有成就感，毕竟研究都是一步一步走过来，不算浪费时间。
 
 为了快点看效果，随机截取57.5 MB的维基百科中文预料，采用CBOW模型，负采样法，sample=0.001。
+
 ![类比测试的对比测试](https://github.com/RelativeWang/word2vec-study/blob/master/%E7%B1%BB%E6%AF%94%E6%B5%8B%E8%AF%95%E7%9A%84%E5%AF%B9%E6%AF%94%E6%B5%8B%E8%AF%95.png)
 
 ### 可视化
 之前的结果还算直观，但是，自己当是也想看一些更直观的东西，还真有。通过PCA(Principle Component Analysis)和T-SNE(t-Distributed Stochastic Neighbor Embedding)都可以实现降维，从而更直观的看到词和词的关系，其实是词向量和词向量的关系。
 
-*感觉上这种降维会损失信息，因为看到有相关的文章说过PCA来对ont-hot进行降维从而获取词向量，效果不如word2vec好，那么这种为了可视化的降维感觉也会损失一些信息。
+*感觉上这种降维会损失信息，因为看到有相关的文章说过PCA来对ont-hot进行降维从而获取词向量，效果不如word2vec好，那么这种为了可视化的降维感觉也会损失一些信息。但是证明这个好像没什么意义。*
 
-代码参考：[1](https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html)
+代码参考：[[1]](https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html)
 ```python
 # test_pca.py
 # from https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html
@@ -168,7 +168,9 @@ display_pca_scatterplot(model, sample = 300);
 display_pca_scatterplot(model, ['男人','女人','女孩','男孩','新娘','新郎','爸爸','妈妈','女生','男生','男性','女性']);
 ```
 对于指定词降维图表如下：
-!(pca降维测试)[https://github.com/RelativeWang/word2vec-study/blob/master/pca%E9%99%8D%E7%BB%B4%E6%B5%8B%E8%AF%951.png]
+
+![pca降维测试](https://github.com/RelativeWang/word2vec-study/blob/master/pca%E9%99%8D%E7%BB%B4%E6%B5%8B%E8%AF%951.png)
+
 测试中，我发现还不错，对于这些反义词来讲，给人的感觉上**每对词的关系应当是差不多的**，也就是说“男人”“女人”的“距离”和“男孩”“女孩”的距离差不多，因为降维降低维数，但是词之间的关系还在。出来的结果，和我一开始感觉的样子一致。
 
 *这个地方，可以再计算一下，来更加“强”的证实我的考虑。*
