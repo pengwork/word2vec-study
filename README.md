@@ -15,20 +15,21 @@ windows10 python3.6 powershell
 ```powershell
 WikiExtractor.py zhwiki-latest-pages-articles.xml.bz2
 ```
-
-### 繁体转中文 用OpenCC库（用的短的test.txt语料，可以将下面的文件替换层wiki）
+### 繁体转中文 用OpenCC库（用的短的test.txt语料，可以将下面的文件名称替换成wiki解压出的文件名称）
+opencc -i [输入文件名] -o [输出文件名称] -c[opencc的配置，去其文件名称下面找，t2s代表traditional to simplified，即繁体转简体]
 ```powershell
 opencc -i testArticle.txt -o testArticlesimp2.txt -c E:\Wiki\python_whl\opencc-1.0.4\share\opencc\t2s.json
 ```
-### 删除非中文的字符（英文、括号、等其他符号）（用的短的test.txt语料，可以将下面的文件替换层wiki）
+### 删除非中文的字符（英文、括号、等其他符号）（用的短的test.txt语料，可以将下面的文件名称替换成wiki中文转化后的文件名称）
 ```powershell
 python testDeleteNotCHineseCharacters.py testArticle_simp.txt testArticle_onlyChinese.txt
 ```
-### 分词 用jieba库（用的短的test.txt语料，可以将下面的文件替换层wiki）
+### 分词 用jieba库（用的短的test.txt语料，可以将下面的文件名称替换成wiki保留中文后的文件名称）
 ```powershell
 python testJiebaPartSentences.py testArticle_onlyChinese.txt testArticle_words.txt
 ```
-###
+### 测试截图 （用的短的test.txt语料，可以将下面的文件名称替换成wiki分词后的文件名称）
+![中文词预处理执行过程](https://github.com/RelativeWang/word2vec-study/blob/master/%E4%B8%AD%E6%96%87%E8%AF%8D%E9%A2%84%E5%A4%84%E7%90%86powershell.jpg)
 # 简单测试
 ### 类比测试
 ### 
