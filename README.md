@@ -75,9 +75,102 @@ sg=1|用负采样的Skip-gram模型|用层次Softmax的Skip-gram模型
 
 究竟怎样判断一个模型的好坏，其标准是什么？
 
-就我的了解，应用到实际看效果是最好的，但是对我这样在学习的人来讲，还有常用的相似度测试和类比测试的方法。
-### 应用到实际
+就我的了解，应用到实际看效果是最好的，但是对我这样在学习的人来讲，很难有这样的机会。但是，自己找了一种方式，可以通过参加比赛尽可能有实际背景。但对于学习来讲，还是操作起来难度有点高，在这里，我采取了很多人在用的相似度测试和类比测试的方法。
+### 环境
+windows10 pycharm
 ### 相似度测试
+```python
+#test_simTest.py
+from gensim.models import word2vec
+
+model = word2vec.Word2Vec.load('wiki_corpus_100.model')
+# 直观看一下词向量,输出是一个size维数的向量，代表“男人”这个词的特征。
+print(model['男人'])
+
+#测试两个词的[余弦]相似度
+print(model.wv.similarity('鼠标','键盘'))
+
+#寻找词的近似词，topn=n代表返回最相近的前n个词
+result = model.most_similar("男人", topn=10)
+print(model.wv.most_similar("男人", topn=10))
+
+#找出集合中不同类型的短语
+list = [u'纽约','u'北京', u'美国', u'苏州']# 这个应该输出美国
+list = ['篮球', '排球', '北京']#这个应该输出北京
+print(model.wv.doesnt_match(list))
+```
+
+上面的例子中的测试，其实还是远远不够的，因为一两个词的相似度，只能说自己测着玩，看看对这个词库来讲，这个词意思最近的是什么，这两个词有多“近”。
+
+对于我来讲，我是想看看它“好坏”。没有工业的应用，我就以“我”为标准，测试一下人类对于近似词的判定，和模型得出的判定，一致还是不一致。
+
+我找到了一个测试集合，(近义词测试集合)[https://www.cs.york.ac.uk/semeval-2012/task4/index.html]
+
+这是下一步的工作。
 ### 类比测试
-模型：为了方便测试，随机截取57.5 MB的维基百科中文预料，采用CBOW模型，负采样法，sample=0.001。
-![]
+```python
+#test_simTest.py
+from gensim.models import word2vec
+
+model = word2vec.Word2Vec.load('wiki_corpus_100.model')
+
+#这个代表，国王+女人-男人=?，一个比较有名的测试，我训练得出的是“女王”。
+print(model.wv.most_similar(positive=[u'国王',u'女人'],negative=[u'男人']))
+```
+#### 通过类比测试看一些变化
+一个对比测试，结论很明显：随着维数增大，“女王”排名越来越高。但是，我觉得很有成就感，毕竟研究都是一步一步走过来，不算浪费时间。
+
+为了快点看效果，随机截取57.5 MB的维基百科中文预料，采用CBOW模型，负采样法，sample=0.001。
+![类比测试的对比测试](https://github.com/RelativeWang/word2vec-study/blob/master/%E7%B1%BB%E6%AF%94%E6%B5%8B%E8%AF%95%E7%9A%84%E5%AF%B9%E6%AF%94%E6%B5%8B%E8%AF%95.png)
+
+### 可视化
+之前的结果还算直观，但是，自己当是也想看一些更直观的东西，还真有。通过PCA(Principle Component Analysis)和T-SNE(t-Distributed Stochastic Neighbor Embedding)都可以实现降维，从而更直观的看到词和词的关系，其实是词向量和词向量的关系。
+
+*感觉上这种降维会损失信息，因为看到有相关的文章说过PCA来对ont-hot进行降维从而获取词向量，效果不如word2vec好，那么这种为了可视化的降维感觉也会损失一些信息。
+
+代码参考：[1](https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html)
+```python
+# test_pca.py
+# from https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from gensim.models import word2vec
+
+# 用于改变字体，但是坐标轴部分还是会出现小方块
+from pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+
+def display_pca_scatterplot(model, words=None, sample=0):
+    if words is None:
+        if sample > 0:
+            words = np.random.choice(list(model.wv.vocab.keys()), sample)
+        else:
+            words = [word for word in model.wv.vocab]
+
+    word_vectors = np.array([model.wv[w] for w in words])
+    #降维至二维
+    twodim = PCA().fit_transform(word_vectors)[:, :2]
+
+    plt.figure(figsize=(6, 6))
+    plt.scatter(twodim[:, 0], twodim[:, 1], edgecolors='k', c='r')
+    for word, (x, y) in zip(words, twodim):
+        print(word)
+        plt.text(x + 0.05, y + 0.05, word)
+    plt.show()
+model = word2vec.Word2Vec.load('800M\wiki_corpus_100_sg0_hs0.model');
+
+print(model.wv.most_similar('男人'));
+
+# 1 随机取300个样例数据降维
+display_pca_scatterplot(model, sample = 300);
+# 2 指定词进行降维
+display_pca_scatterplot(model, ['男人','女人','女孩','男孩','新娘','新郎','爸爸','妈妈','女生','男生','男性','女性']);
+```
+对于指定词降维图表如下：
+!(pca降维测试)[https://github.com/RelativeWang/word2vec-study/blob/master/pca%E9%99%8D%E7%BB%B4%E6%B5%8B%E8%AF%951.png]
+测试中，我发现还不错，对于这些反义词来讲，给人的感觉上**每对词的关系应当是差不多的**，也就是说“男人”“女人”的“距离”和“男孩”“女孩”的距离差不多，因为降维降低维数，但是词之间的关系还在。出来的结果，和我一开始感觉的样子一致。
+
+*这个地方，可以再计算一下，来更加“强”的证实我的考虑。*
+
+[1] https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html
