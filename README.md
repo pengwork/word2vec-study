@@ -5,7 +5,7 @@ word2vec学习，利用python中gensim等构建中文词向量并测试。
 # 中文语料预处理
 
 ## 下载语料包
-采用[维基中文语料](https://dumps.wikimedia.org/enwiki/latest/
+采用[维基中文语料](https://dumps.wikimedia.org/enwiki/latest/)
 下载如下文件名称的，也就是带有“article”的“.xml.bz2”格式的文件。维基自动每几天打包一份，日期不同没关系。
 
 -enwiki-latest-pages-articles.xml.bz2               02-Aug-2019 21:28         16350985901
