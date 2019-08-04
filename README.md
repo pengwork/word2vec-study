@@ -7,16 +7,18 @@ word2vec学习，利用python中gensim等构建中文词向量并测试。
 windows10 python3.6 powershell
 
 ### 下载语料包
-采用[维基中文语料](https://dumps.wikimedia.org/enwiki/latest/)下载如下文件名称的，也就是带有“article”的“.xml.bz2”格式的文件。维基自动每几天打包一份，日期不同没关系。
+采用[维基中文语料](https://dumps.wikimedia.org/zhwiki/latest/)下载如下文件名称的，带有“article”的“.xml.bz2”格式的文件。
 
-- enwiki-latest-pages-articles.xml.bz2               02-Aug-2019 21:28         16350985901
+维基自动每几天打包一份，日期不同没关系。
+
+- zhwiki-latest-pages-articles.xml.bz2               02-Aug-2019 21:28         16350985901
 
 ### 解压 用WikiExtractor库
 ```powershell
 WikiExtractor.py zhwiki-latest-pages-articles.xml.bz2
 ```
 ### 繁体转中文 用OpenCC库（用的短的test.txt语料，可以将下面的文件名称替换成wiki解压出的文件名称）
-opencc -i [输入文件名] -o [输出文件名称] -c[opencc的配置，去其文件名称下面找，t2s代表traditional to simplified，即繁体转简体]
+> opencc -i [输入文件名] -o [输出文件名称] -c[opencc的配置，去其文件名称下面找，t2s代表traditional to simplified，即繁体转简体]
 ```powershell
 opencc -i testArticle.txt -o testArticlesimp2.txt -c E:\Wiki\python_whl\opencc-1.0.4\share\opencc\t2s.json
 ```
