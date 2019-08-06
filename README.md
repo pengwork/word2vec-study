@@ -5,6 +5,8 @@ word2vec学习，利用python中gensim等构建中文词向量并测试。
 
 以下为个人学习记录，如有不对的地方，希望您不啬指出，非常感谢！
 
+[TOC]
+
 # 中文语料预处理
 ### 环境
 windows10 python3.6 powershell
