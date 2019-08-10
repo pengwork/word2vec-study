@@ -178,9 +178,12 @@ display_pca_scatterplot(model, ['男人','女人','女孩','男孩','新娘','�
 测试中，我发现还不错，对于这些反义词来讲，给人的感觉上**每对词的关系应当是差不多的**，也就是说“男人”“女人”的“距离”和“男孩”“女孩”的距离差不多，因为降维降低维数，但是词之间的关系还在。出来的结果，和我一开始感觉的样子一致。
 
 *这个地方，可以再计算一下，来更加“强”的证实我的考虑。*
+
+![](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E5%9B%BD%E5%AE%B6-%E9%A6%96%E9%83%BD%E4%BA%8C%E7%BB%B4.png)
 #### PCA·三维
 代码在 test_pcaTriDim.py 中。
 
 效果如下，
-
+![](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E6%97%B6%E9%97%B4%E5%B1%9E%E6%80%A7.png)
+![](https://github.com/RelativeWang/word2vec-study/blob/master/image/Figure_3_ManWoman.png)
 [1] https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html
