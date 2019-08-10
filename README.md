@@ -127,6 +127,7 @@ print(model.wv.most_similar(positive=[u'国王',u'女人'],negative=[u'男人'])
 ![类比测试的对比测试](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E7%B1%BB%E6%AF%94%E6%B5%8B%E8%AF%95%E7%9A%84%E5%AF%B9%E6%AF%94%E6%B5%8B%E8%AF%95.png)
 
 ### 可视化
+#### PCA·二维
 之前的结果还算直观，但是，自己当是也想看一些更直观的东西，还真有。通过PCA(Principle Component Analysis)和T-SNE(t-Distributed Stochastic Neighbor Embedding)都可以实现降维，从而更直观的看到词和词的关系，其实是词向量和词向量的关系。
 
 *感觉上这种降维会损失信息，因为看到有相关的文章说过PCA来对ont-hot进行降维从而获取词向量，效果不如word2vec好，那么这种为了可视化的降维感觉也会损失一些信息。但是证明这个好像没什么意义。*
@@ -177,5 +178,9 @@ display_pca_scatterplot(model, ['男人','女人','女孩','男孩','新娘','�
 测试中，我发现还不错，对于这些反义词来讲，给人的感觉上**每对词的关系应当是差不多的**，也就是说“男人”“女人”的“距离”和“男孩”“女孩”的距离差不多，因为降维降低维数，但是词之间的关系还在。出来的结果，和我一开始感觉的样子一致。
 
 *这个地方，可以再计算一下，来更加“强”的证实我的考虑。*
+#### PCA·三维
+代码在 test_pcaTriDim.py 中。
+
+效果如下，
 
 [1] https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html
