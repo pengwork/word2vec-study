@@ -36,7 +36,7 @@ python testDeleteNotCHineseCharacters.py testArticle_simp.txt testArticle_onlyCh
 python testJiebaPartSentences.py testArticle_onlyChinese.txt testArticle_words.txt
 ```
 ### 测试截图 （用的短的test.txt语料，可以将下面的文件名称替换成wiki分词后的文件名称）
-![中文词预处理执行过程](https://github.com/RelativeWang/word2vec-study/blob/master/%E4%B8%AD%E6%96%87%E8%AF%8D%E9%A2%84%E5%A4%84%E7%90%86powershell.jpg)
+![中文词预处理执行过程](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E4%B8%AD%E6%96%87%E8%AF%8D%E9%A2%84%E5%A4%84%E7%90%86powershell.jpg)
 # 训练模型
 ## Word2Vec 用gensim库
 ### 环境
@@ -124,7 +124,7 @@ print(model.wv.most_similar(positive=[u'国王',u'女人'],negative=[u'男人'])
 
 为了快点看效果，随机截取57.5 MB的维基百科中文预料，采用CBOW模型，负采样法，sample=0.001。
 
-![类比测试的对比测试](https://github.com/RelativeWang/word2vec-study/blob/master/%E7%B1%BB%E6%AF%94%E6%B5%8B%E8%AF%95%E7%9A%84%E5%AF%B9%E6%AF%94%E6%B5%8B%E8%AF%95.png)
+![类比测试的对比测试](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E7%B1%BB%E6%AF%94%E6%B5%8B%E8%AF%95%E7%9A%84%E5%AF%B9%E6%AF%94%E6%B5%8B%E8%AF%95.png)
 
 ### 可视化
 之前的结果还算直观，但是，自己当是也想看一些更直观的东西，还真有。通过PCA(Principle Component Analysis)和T-SNE(t-Distributed Stochastic Neighbor Embedding)都可以实现降维，从而更直观的看到词和词的关系，其实是词向量和词向量的关系。
@@ -172,7 +172,7 @@ display_pca_scatterplot(model, ['男人','女人','女孩','男孩','新娘','�
 ```
 对于指定词降维图表如下：
 
-![pca降维测试](https://github.com/RelativeWang/word2vec-study/blob/master/pca%E9%99%8D%E7%BB%B4%E6%B5%8B%E8%AF%951.png)
+![pca降维测试](https://github.com/RelativeWang/word2vec-study/blob/master/image/pca%E9%99%8D%E7%BB%B4%E6%B5%8B%E8%AF%951.png)
 
 测试中，我发现还不错，对于这些反义词来讲，给人的感觉上**每对词的关系应当是差不多的**，也就是说“男人”“女人”的“距离”和“男孩”“女孩”的距离差不多，因为降维降低维数，但是词之间的关系还在。出来的结果，和我一开始感觉的样子一致。
 
