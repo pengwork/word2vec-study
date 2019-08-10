@@ -186,4 +186,5 @@ display_pca_scatterplot(model, ['男人','女人','女孩','男孩','新娘','�
 效果如下，
 ![](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E6%97%B6%E9%97%B4%E5%B1%9E%E6%80%A7.png)
 ![](https://github.com/RelativeWang/word2vec-study/blob/master/image/Figure_3_ManWoman.png)
+
 [1] https://web.stanford.edu/class/cs224n/materials/Gensim%20word%20vector%20visualization.html
