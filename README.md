@@ -97,8 +97,8 @@ if __name__ == "__main__":
 |hs=0|Negative Sampling|中文：负采样方法|
 |sg=0|CBOW Continuous Bag of Words|连续词袋模型|
 
-|hs=0|hs=1|
-|---|---|
+||hs=0|hs=1|
+|---|---|---|
 |sg=0|用负采样的CBOW模型|用层次Softmax的CBOW模型|
 |sg=1|用负采样的Skip-gram模型|用层次Softmax的Skip-gram模型|
 
