@@ -5,9 +5,32 @@ word2vec学习，利用python中gensim等构建中文词向量并测试。
 
 以下为个人学习记录，如有不对的地方，希望您不啬指出，非常感谢！
 
-[TOC]
+## 目录
+* [语料预处理](#中文语料预处理)
+    * [环境](#环境)
+    * [下载语料包](#下载语料包)
+    * [解压](#解压 用WikiExtractor库)
+    * [繁体转简体](#繁体转中文 用OpenCC库（用的短的test.txt语料，可以将下面的文件名称替换成wiki解压出的文件名称）)
+    * [删除非中文字符](#删除非中文的字符（英文、括号、等其他符号）（用的短的test.txt语料，可以将下面的文件名称替换成wiki中文转化后的文件名称）)
+    * [分词](#分词 用jieba库（用的短的test.txt语料，可以将下面的文件名称替换成wiki保留中文后的文件名称）)
+    * [测试截图](#测试截图 （用的短的test.txt语料，可以将下面的文件名称替换成wiki分词后的文件名称）)
+* [训练模型](#训练模型)
+    * [Word2Vec](#Word2Vec 用gensim库)
+        * [环境](#环境)
+        * [过程](#过程)
+    * [Glove](#Glove)
+    * [FastText](#FastText)
+* [测试](#测试)
+    * [环境](#环境)
+    * [相似度测试](#相似度测试)
+    * [类比测试](#类比测试)
+    * [通过类比测试看一些变化](#通过类比测试看一些变化)
+    * [可视化](#可视化)
+        * [PCA二维](#PCA二维)
+        * [PCA三维](#PCA三维)
 
-# 中文语料预处理
+
+## 中文语料预处理
 ### 环境
 windows10 python3.6 powershell
 
@@ -37,11 +60,11 @@ python testJiebaPartSentences.py testArticle_onlyChinese.txt testArticle_words.t
 ```
 ### 测试截图 （用的短的test.txt语料，可以将下面的文件名称替换成wiki分词后的文件名称）
 ![中文词预处理执行过程](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E4%B8%AD%E6%96%87%E8%AF%8D%E9%A2%84%E5%A4%84%E7%90%86powershell.jpg)
-# 训练模型
-## Word2Vec 用gensim库
-### 环境
+## 训练模型
+### Word2Vec 用gensim库
+#### 环境
 windows10 pycharm python3.6
-### 过程
+#### 过程
 ```python
 # word2vec_train.py
 import logging
@@ -71,9 +94,9 @@ sg=0|CBOW Continuous Bag of Words|连续词袋模型
 sg=0|用负采样的CBOW模型|用层次Softmax的CBOW模型
 sg=1|用负采样的Skip-gram模型|用层次Softmax的Skip-gram模型
 
-## Glove
-## FastText
-# 测试
+### Glove
+### FastText
+## 测试
 一个比较困扰过我的问题
 
 究竟怎样判断一个模型的好坏，其标准是什么？
