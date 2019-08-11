@@ -90,15 +90,17 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-符号|代表含义|常用中文翻译
-hs=1|hierachical Softmax|层次Softmax方法
-sg=1|Skip-gran model|跳字模型(一般就采用英文)
-hs=0|Negative Sampling|中文：负采样方法
-sg=0|CBOW Continuous Bag of Words|连续词袋模型
+|符号|代表含义|常用中文翻译|
+|---|---|---|
+|hs=1|hierachical Softmax|层次Softmax方法|
+|sg=1|Skip-gran model|跳字模型(一般就采用英文)|
+|hs=0|Negative Sampling|中文：负采样方法|
+|sg=0|CBOW Continuous Bag of Words|连续词袋模型|
 
-|hs=0|hs=1
-sg=0|用负采样的CBOW模型|用层次Softmax的CBOW模型
-sg=1|用负采样的Skip-gram模型|用层次Softmax的Skip-gram模型
+|hs=0|hs=1|
+|---|---|
+|sg=0|用负采样的CBOW模型|用层次Softmax的CBOW模型|
+|sg=1|用负采样的Skip-gram模型|用层次Softmax的Skip-gram模型|
 
 ### Glove
 ### FastText
