@@ -15,7 +15,7 @@ word2vec学习，利用python中gensim等构建中文词向量并测试。
     * [分词](#分词)
     * [测试截图](#测试截图)
 * [训练模型](#训练模型)
-    * [Word2Vec](#Word2Vec 用gensim库)
+    * [Word2Vec](#Word2Vec用gensim库)
         * [环境](#环境)
         * [过程](#过程)
     * [Glove](#Glove)
@@ -67,7 +67,7 @@ python testJiebaPartSentences.py testArticle_onlyChinese.txt testArticle_words.t
 **（用的短的test.txt语料，可以将下面的文件名称替换成wiki分词后的文件名称）**
 ![中文词预处理执行过程](https://github.com/RelativeWang/word2vec-study/blob/master/image/%E4%B8%AD%E6%96%87%E8%AF%8D%E9%A2%84%E5%A4%84%E7%90%86powershell.jpg)
 ## 训练模型
-### Word2Vec 用gensim库
+### Word2Vec用gensim库
 #### 环境
 windows10 pycharm python3.6
 #### 过程
